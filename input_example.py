@@ -5,7 +5,7 @@
 # convert weight to a float
 # validate that weight is a number
 # if weight is not a number, reprompt the user until the input is correct
-def main():
+def get_positive_float_input():
     while True:
         try:
             user_weight = float(input("Enter your weight in pounds: "))
@@ -17,6 +17,7 @@ def main():
                 break
         except:
             print("ERROR: Please enter a number")
+def main():
 
     # PROCESSING
     # use a conversion to convert lbs to kilos: 2.205 lbs = 1kg
@@ -27,4 +28,5 @@ def main():
     # print the output to the user in a nice format to 2 decimal places
     print(f"You weight {user_weight_in_kg:.2f}kgs.")
 
+# call the main function
 main()
