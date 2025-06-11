@@ -22,6 +22,7 @@ def get_positive_float_input():
 def main():
     # get the weight from the user, Call the get_positive_float_input function
     user_weight = get_positive_float_input()
+    
     # PROCESSING
     # use a conversion to convert lbs to kilos: 2.205 lbs = 1kg
     LBS_TO_KG_CONVERSION = 2.205
