@@ -19,14 +19,19 @@ def get_positive_float_input():
             print("ERROR: Please enter a number")
     return user_weight
 
+def convert_lbs_to_kg(weight):
+    LBS_TO_KG_CONVERSION = 2.205
+    user_weight_in_kg = weight / LBS_TO_KG_CONVERSION
+    return user_weight_in_kg
+
 def main():
     # get the weight from the user, Call the get_positive_float_input function
     user_weight = get_positive_float_input()
-    
+
     # PROCESSING
     # use a conversion to convert lbs to kilos: 2.205 lbs = 1kg
-    LBS_TO_KG_CONVERSION = 2.205
-    user_weight_in_kg = user_weight / LBS_TO_KG_CONVERSION
+    # call the convert_lbs_to_kg function
+    user_weight_in_kg = convert_lbs_to_kg(user_weight)
 
     # OUTPUT
     # print the output to the user in a nice format to 2 decimal places
