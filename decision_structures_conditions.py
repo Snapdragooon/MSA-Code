@@ -32,7 +32,23 @@ def main():
         print(f"{test_score} --> C")
     elif ((test_score <= 69) and (test_score >= 60)):
         print(f"{test_score} --> D")
-    else:
+    elif ((test_score <= 59) and (test_score >= 0)):
         print(f"{test_score} --> F")
+    else:
+        print("Invalid test score")
+
+    print("Grade Desicion: 2")
+    if ((test_score <= 100) and (test_score >= 90)):
+        print(f"{test_score} --> A")
+    elif (test_score >= 80):
+        print(f"{test_score} --> B")
+    elif (test_score >= 70):
+        print(f"{test_score} --> C")
+    elif (test_score >= 60):
+        print(f"{test_score} --> D")
+    elif (test_score >= 0):
+        print(f"{test_score} --> F")
+    else:
+        print("Invalid test score")
 
 main()
