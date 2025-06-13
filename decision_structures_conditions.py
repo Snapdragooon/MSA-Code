@@ -51,4 +51,19 @@ def main():
     else:
         print("Invalid test score")
 
+    # create a deccision structure to determine the season: winter, spring, summer, fall
+    # ask the user to enter the number of the month and based on the number, determine the season
+    # winter - 12, 1, 2; spring - 3, 4, 5; summer - 6, 7, 8; fall - 9, 10, 11
+    # output/print the season: "It is season"
+    month_number = int(input("\nEnter a number: "))
+    
+    if ((month_number >= 3) and (month_number <= 5)):
+        print("It is Spring")
+    elif ((month_number >= 6) and (month_number <= 8)):
+        print("It is Summer")
+    elif ((month_number >= 9) and (month_number <= 11)):
+        print("It is Fall")
+    else:
+        print("It is Winter")
+
 main()
