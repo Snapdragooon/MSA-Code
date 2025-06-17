@@ -3,7 +3,7 @@ Function: to get valid expression inputs from the user
 Input: none
 Output: (int)x, (int)z, (string)y
 """
-def get_valid_expression():
+def get_valid_expression_input():
     while True:
         # prompt the user for an expression
         expression = input("Enter a math equation: ")
@@ -33,6 +33,10 @@ def get_valid_expression():
             print("Please enter an operator (+, -, *, /)")
             continue
 
+        if (y == "/" and z == 0):
+            print("Cannot divide by 0")
+            continue
+
         break
 
     return x, y, z
@@ -52,16 +56,13 @@ def evaluate_expression(x:int, y:str, z:int):
     elif y == "*":
         answer = x * z
     else:
-        if z == 0:
-            print("Cannot divide by 0")
-        else:
-            answer = x / z
+        answer = x / z
     return answer
 
 def main():
     while True:
         # call tthe get_valid_expression_input function to get x, y, z
-        int(x), str(y), int(z) = get_valid_expression
+        x, y, z = get_valid_expression_input()
 
         # call evaluate_expression to get the answer for the expression
         answer = evaluate_expression(x, y, z)
@@ -76,6 +77,5 @@ def main():
             continue
         else:
             break
-
 
 main()
