@@ -8,7 +8,23 @@ app = flask.Flask(__name__)
 # tell the server to reload each time the code changes
 app.config["DEBUG"] = True
 
-# load student dictionaries
+"""
+Function: to query the student dictionaries based on a search key
+Input: search key
+Output: list of results
+"""
+def search_student_data(search_value, search_key):
+    # get students with major major
+    # get all students
+    student_dictionaries = sg.get_student_dictionaries()
+    list_of_results = []
+
+    # use for loop to search
+    for student in student_dictionaries:
+        if search_value.lower() == student[search_key].lower():
+            list_of_results.append(student)
+
+    return list_of_results
 
 # create a route to display our name
 @app.route('/', methods=['GET'])
@@ -25,22 +41,30 @@ def api_all():
 # create a route to return students by major
 @app.route('/api/majors/<string:major>', methods=['GET'])
 def api_students_by_major(major:str):
-    print(major)
-    # get students with major major
-    # get all students
-    student_dictionaries = sg.get_student_dictionaries()
-    major_students = []
-
-    # use for loop to search
-    for student in student_dictionaries:
-        if major == student['major']:
-            major_students.append(student)
+    major_students = search_student_data(major, "major")
 
     return major_students
 
-# create 2 routes
-# - return all student data
-# - return students by major
+# create a route to return a student based on an id url parameter
+
+@app.route('/api/students/<string:id>', methods=['GET'])
+def api_student_by_id(id:str):
+    # get all students
+    student_dictionaries = sg.get_student_dictionaries()
+
+    target_student = None
+    # search student dictionaries for the student based on ID
+    for student in student_dictionaries:
+        if id == str(student['id']):
+            target_student = student
+            break
+    return jsonify(target_student)
+
+@app.route('/api/student/<string:class_rank>', methods=['GET'])
+def api_student_by_class(class_rank:str):
+    student_by_class = search_student_data(class_rank, "class")
+
+    return student_by_class
 
 # run the application
 app.run()
