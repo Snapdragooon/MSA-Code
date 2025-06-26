@@ -7,7 +7,7 @@ class Student():
         self.__major = major
         self.__credit_hours = credit_hours
         self.__gpa = gpa
-        self.__id_number = id_number
+        self.__id_number = id_number.strip()
     
     # create getter and setter methods
     def get_first_name(self):
