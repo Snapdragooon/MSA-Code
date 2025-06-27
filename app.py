@@ -29,7 +29,58 @@ def index():
 
     # get student data
     student_data = get_student_data(url)
-    return render_template('index.html')
+    return render_template('index.html', student_data=student_data)
+
+# create a route for the majors search page with GET request
+@app.route('/majors', methods=['GET'])
+def majors_get():
+    # get a list of student data
+    url = 'http://127.0.0.1:5000/api/students/all'
+    student_data = get_student_data(url)
+
+    # create a list to store unique majors
+    major_list = []
+
+    # use for loop to iterate through the student list
+    for student in student_data:
+        # add major to majors list if major not currently in list
+        if student['major'] not in major_list:
+            major_list.append(student['major'])
+
+        # sort the major list
+        major_list.sort()
+
+    return render_template('majors.html', major_list=major_list)
+
+# create a route for the majors search page with GET request
+@app.route('/majors', methods=['POST'])
+def majors_post():
+    # get a list of student data
+    url = 'http://127.0.0.1:5000/api/students/all'
+    student_data = get_student_data(url)
+
+    # create a list to store unique majors
+    major_list = []
+
+    # use for loop to iterate through the student list
+    for student in student_data:
+        # add major to majors list if major not currently in list
+        if student['major'] not in major_list:
+            major_list.append(student['major'])
+
+        # sort the major list
+        major_list.sort()
+
+    # get the form data: chosen major
+    major = request.form.get('major')
+    print(major)
+
+    # create the request url to get students with that major
+    url = f"http://127.0.0.1:5000/api/majors/{major}"
+
+    # send the request and get the response
+    result_list = get_student_data(url)
+    return render_template('majors.html', major_list=major_list, result_list=result_list)
 
 # run the flask app
 app.run(port=5001)
